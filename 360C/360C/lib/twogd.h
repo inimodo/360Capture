@@ -160,7 +160,7 @@ GDVEC2 operator * (GDVEC2  &p_Pos1, int &i_Lenght);
 
 GDVEC3 operator - (GDVEC3  &p_Pos1, GDVEC3  &p_Pos2);
 GDVEC3 operator + (GDVEC3  &p_Pos1, GDVEC3  &p_Pos2);
-GDVEC3 operator * (GDVEC3  &p_Pos1, int &i_Lenght);
+GDVEC3 operator * (GDVEC3  &p_Pos1, float &i_Lenght);
 
 
 extern void  SetScreenBuffer(DWORD* dw_ColorStream, int i_Width, int i_Height);

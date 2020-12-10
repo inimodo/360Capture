@@ -1,8 +1,7 @@
 #pragma once
 #include<twogd.h>
 
-
-
+#include <chrono>
 typedef class graphing 
 {
 private:
@@ -16,3 +15,26 @@ public:
 	void DisplayData(WORD*i_pValue,int i_Values);
 
 } GRAPH;
+
+typedef class triangle {
+public:
+	static WORD w_Public[4][4];
+
+	WORD w_Sides[3];
+	GDVEC3 o_Point[3];
+	void SetSides(int i_Point);
+	void GetPoints(int i_Point,GDVEC3 gd_Origin);
+}TRIFORM;
+#define M_GRAPH_WIDTH 260
+#define M_GRAPH_HEIGHT 100
+#define M_GRAPH_OFFSET 10
+
+#define M_NET_SIZE 5
+
+#define M_DATABUFFER 100
+
+#define M_TICKTOM(X) (((float)X*(1.0f/1000000.0f))*343.0f)
+
+extern WORD w_Datastream[M_DATABUFFER][4];
+
+DWORD __WAY usbprocess(LPVOID lp_Void);

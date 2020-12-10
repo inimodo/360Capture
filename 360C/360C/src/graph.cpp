@@ -31,4 +31,60 @@ void graphing::DisplayData(WORD*i_pValue, int i_Values)
 		o_PointOne = o_PointTwo;
 
 	}
+
+}
+
+DWORD __WAY usbprocess(LPVOID lp_Void) 
+{
+	while (1)
+	{
+		for (int i_Reciver = 0; i_Reciver < 4; i_Reciver++)
+		{
+			for (INT i_Pos = 0; i_Pos < M_DATABUFFER-1; i_Pos++)
+			{
+				w_Datastream[i_Reciver][i_Pos]= w_Datastream[i_Reciver][i_Pos+1];
+			}
+			w_Datastream[i_Reciver][M_DATABUFFER - 1] = rand() % 1000;
+		}
+		Sleep(40);
+	}
+	return 0;
+}
+
+void triangle::SetSides(int i_Point) 
+{
+
+	w_Sides[0] = w_Public[i_Point][0];
+	w_Sides[1] = w_Public[(i_Point + 1)%4][0];
+	w_Sides[2] = w_Public[i_Point][1];
+
+
+}
+void triangle::GetPoints(int i_Point,GDVEC3 o_Origin)
+{
+
+	float R= (float)w_Sides[0], r= (float)w_Sides[1], d = (float)w_Sides[2];
+	float x = (d*d - r * r + R * R) / (2 * d);
+	float a = (sqrtf(  (-d+r-R)*(-d-r+R)*(-d+r+R)*(d+r+R) )/d)/2;
+	this->o_Point[0] = GDVEC3(o_Origin.f_Pos[0],0, o_Origin.f_Pos[2]);
+	switch (i_Point)
+	{
+	case 0:
+		this->o_Point[1] = GDVEC3(o_Origin.f_Pos[0]+x, 0, o_Origin.f_Pos[2]+a);
+		this->o_Point[2] = GDVEC3(o_Origin.f_Pos[0]+d, 0, o_Origin.f_Pos[2]);
+		break;
+	case 1:
+		this->o_Point[1] = GDVEC3(o_Origin.f_Pos[0] + a, 0, o_Origin.f_Pos[2] -x);
+		this->o_Point[2] = GDVEC3(o_Origin.f_Pos[0] , 0, o_Origin.f_Pos[2]-d);
+		break;
+	case 2:
+		this->o_Point[1] = GDVEC3(o_Origin.f_Pos[0] -x , 0, o_Origin.f_Pos[2] - a);
+		this->o_Point[2] = GDVEC3(o_Origin.f_Pos[0]-d, 0, o_Origin.f_Pos[2] );
+		break;
+	case 3:
+		this->o_Point[1] = GDVEC3(o_Origin.f_Pos[0] - a, 0, o_Origin.f_Pos[2] + x);
+		this->o_Point[2] = GDVEC3(o_Origin.f_Pos[0], 0, o_Origin.f_Pos[2]+d);
+		break;
+	}
+
 }
