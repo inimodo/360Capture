@@ -34,22 +34,6 @@ void graphing::DisplayData(WORD*i_pValue, int i_Values)
 
 }
 
-DWORD __WAY usbprocess(LPVOID lp_Void) 
-{
-	while (1)
-	{
-		for (int i_Reciver = 0; i_Reciver < 4; i_Reciver++)
-		{
-			for (INT i_Pos = 0; i_Pos < M_DATABUFFER-1; i_Pos++)
-			{
-				w_Datastream[i_Reciver][i_Pos]= w_Datastream[i_Reciver][i_Pos+1];
-			}
-			w_Datastream[i_Reciver][M_DATABUFFER - 1] = rand() % 1000;
-		}
-		Sleep(40);
-	}
-	return 0;
-}
 
 void triangle::SetSides(int i_Point) 
 {
@@ -86,5 +70,4 @@ void triangle::GetPoints(int i_Point,GDVEC3 o_Origin)
 		this->o_Point[2] = GDVEC3(o_Origin.f_Pos[0], 0, o_Origin.f_Pos[2]+d);
 		break;
 	}
-
 }
